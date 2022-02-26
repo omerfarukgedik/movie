@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/searchBar.scss";
 
 const SearchBar = ({ text, search }) => {
@@ -6,12 +6,16 @@ const SearchBar = ({ text, search }) => {
 
   const handleKeypress = (e) => e.key === "Enter" && search(e.target.value);
 
+  useEffect(() => {
+    setSearchText(text);
+  }, [text]);
+
   return (
     <div className="search">
       <input
         onChange={(e) => setSearchText(e.target.value)}
         type="text"
-        defaultValue={text}
+        value={searchText}
         placeholder="Search a movie"
         onKeyPress={handleKeypress}
       />

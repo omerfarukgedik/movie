@@ -4,7 +4,6 @@ import Movie from "./pages/Movie";
 const ROUTES = [
   {
     path: "/",
-    exact: true,
     element: <Home />,
   },
   {
