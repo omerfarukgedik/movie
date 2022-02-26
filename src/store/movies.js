@@ -4,14 +4,16 @@ const movies = createSlice({
   name: "movies",
   initialState: {
     loading: false,
-    movies: [],
+    data: [],
+    total: 0,
   },
   reducers: {
     setLoading: (state, { payload }) => {
       state.loading = payload;
     },
-    setMovies: (state, { movies }) => {
-      state.movies = movies;
+    setMovies: (state, { payload }) => {
+      state.data = payload.Search;
+      state.total = payload.totalResults;
     },
   },
 });
@@ -20,21 +22,27 @@ export const { setLoading, setMovies } = movies.actions;
 
 export default movies.reducer;
 
-export const fetchAsyncMovies = () => {
+export const fetchAsyncMovies = (searchText, apiKey) => {
   return async (dispatch) => {
-    dispatch(setLoading(true));
-
     try {
-      const response = await fetch(
-        "http://www.omdbapi.com/?i=tt3896198&apikey=b6a1bf57",
-      );
-      const data = await response.json();
+      console.log(apiKey);
+      console.log(searchText);
+      if (apiKey && searchText) {
+        dispatch(setLoading(true));
 
-      console.log(data);
+        const response = await fetch(
+          `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchText}`,
+        );
+        const data = await response.json();
 
-      dispatch(setMovies(data));
+        data.Response === "True"
+          ? dispatch(setMovies(data))
+          : dispatch(setMovies({ Search: [], totalResults: 0 }));
+
+        dispatch(setLoading(false));
+      }
     } catch (err) {
-      dispatch(setMovies([]));
+      dispatch(setMovies({ Search: [], totalResults: 0 }));
       dispatch(setLoading(false));
     }
   };
