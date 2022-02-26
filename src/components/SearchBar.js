@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "../styles/searchBar.scss";
 
-const SearchBar = ({ text, search }) => {
+const SearchBar = ({ isLoading, text, search }) => {
   const [searchText, setSearchText] = useState(text);
 
   const handleKeypress = (e) => e.key === "Enter" && search(e.target.value);
@@ -18,9 +18,14 @@ const SearchBar = ({ text, search }) => {
         value={searchText}
         placeholder="Search a movie"
         onKeyPress={handleKeypress}
+        disabled={isLoading}
       />
-      <div onClick={() => search(searchText)} className="search__button">
-        Search
+      <div
+        disabled={isLoading}
+        onClick={() => search(searchText)}
+        className={`search__button${isLoading ? "__disabled" : ""}`}
+      >
+        {isLoading ? "Loading..." : "Search"}
       </div>
     </div>
   );

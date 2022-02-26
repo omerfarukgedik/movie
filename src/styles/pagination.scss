@@ -71,4 +71,8 @@
       }
     }
   }
+
+  &.loading {
+    display: none;
+  }
 }

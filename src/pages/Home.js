@@ -29,18 +29,19 @@ const Home = () => {
     };
 
     await setStates();
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
   }, [params]);
-  return isLoading ? (
-    <>Loading...</>
-  ) : (
+  return (
     <>
-      <SearchBar text={searchText} search={search} />
+      <SearchBar isLoading={isLoading} text={searchText} search={search} />
 
       <div style={{ minHeight: 500 }}>Movie list</div>
       <Pagination
         className="pagination-bar"
-        currentPage={page}
+        isLoading={isLoading}
+        currentPage={page || 1}
         totalCount={12}
         pageSize={10}
         onPageChange={(num) => setParams({ search: searchText, page: num })}

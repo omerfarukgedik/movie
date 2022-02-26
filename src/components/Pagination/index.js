@@ -9,6 +9,7 @@ const Pagination = ({
   currentPage,
   pageSize,
   className,
+  isLoading,
 }) => {
   const paginationRange = usePagination({
     currentPage,
@@ -22,15 +23,18 @@ const Pagination = ({
     return null;
   }
 
-  const lastPage = paginationRange.at[-1];
+  const lastPage = paginationRange.at(-1);
   return (
     <ul
-      className={classnames("pagination-container", { [className]: className })}
+      className={classnames("pagination-container", {
+        [className]: className,
+        loading: isLoading,
+      })}
     >
       {/* Left navigation arrow */}
       <li
         className={classnames("pagination-item", {
-          disabled: currentPage === 1,
+          disabled: currentPage <= 1,
         })}
         onClick={() => onPageChange(currentPage - 1)}
       >
@@ -60,7 +64,7 @@ const Pagination = ({
       {/*  Right Navigation arrow */}
       <li
         className={classnames("pagination-item", {
-          disabled: currentPage === lastPage,
+          disabled: currentPage >= lastPage,
         })}
         onClick={() => onPageChange(currentPage + 1)}
       >

@@ -9,6 +9,8 @@
     font-size: 1.2rem;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    background-color: var(--bg-color);
+
     &:focus {
       outline: 0;
     }
@@ -26,5 +28,12 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     cursor: pointer;
+
+    &__disabled {
+      @extend .search__button;
+      background-color: var(--dark-blue);
+      color: var(--text-black);
+      cursor: wait;
+    }
   }
 }
