@@ -15,19 +15,19 @@ const App = () => {
     setParams({ ...params, search: text || "Pokemon", page: 1 });
   };
 
-  useEffect(() => {
-    console.log("rendered again");
-    const querySearch = params.get("search");
-    const queryPage = params.get("page");
+  useEffect(async () => {
+    const setQueryParams = async () => {
+      const querySearch = params.get("search");
+      const queryPage = params.get("page");
 
-    console.log(querySearch);
+      setParams({
+        ...params,
+        search: querySearch || "Pokemon",
+        page: queryPage || 1,
+      });
+    };
 
-    setParams({
-      ...params,
-      search: querySearch || "Pokemon",
-      page: queryPage || 1,
-    });
-
+    await setQueryParams();
     setPage(params.get("page"));
     setSearchText(params.get("search"));
   }, [params]);
