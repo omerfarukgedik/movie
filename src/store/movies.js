@@ -24,10 +24,8 @@ export default movies.reducer;
 
 export const fetchAsyncMovies = (payload) => {
   const { searchText, apiKey, page } = payload;
-  console.log(payload);
   return async (dispatch) => {
     const queryParams = new URLSearchParams({ apiKey, s: searchText, page });
-    console.log(queryParams.toString());
     try {
       if (apiKey && searchText) {
         dispatch(setLoading(true));

@@ -26,6 +26,24 @@ const Home = () => {
   return (
     <>
       <SearchBar isLoading={loading} text={searchText} search={search} />
+      <div className="top-pagination">
+        <span>
+          Toplam <strong>{total}</strong> sonuçtan{" "}
+          <strong>{data.length}</strong> tanesi gösteriliyor.
+        </span>
+
+        <Pagination
+          className="pagination-bar"
+          isLoading={loading}
+          currentPage={page || 1}
+          totalCount={total}
+          pageSize={10}
+          onPageChange={(num) => {
+            setSearchText(searchText);
+            setPage(num);
+          }}
+        />
+      </div>
 
       <div className="movies">
         {data.map((movie, index) => (

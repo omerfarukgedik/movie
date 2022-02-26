@@ -21,6 +21,11 @@ ul {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+  color: var(--text-white);
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -33,9 +38,8 @@ body {
   .App {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 20px;
-    height: 100vh;
-    width: 600px;
+    width: 800px;
+    margin: 20px 0;
   }
 }
