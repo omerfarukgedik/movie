@@ -2,16 +2,14 @@ import classnames from "classnames";
 import { usePagination, DOTS } from "./usePagination";
 import "../../styles/pagination.scss";
 
-const Pagination = (props) => {
-  const {
-    onPageChange,
-    totalCount,
-    siblingCount = 1,
-    currentPage,
-    pageSize,
-    className,
-  } = props;
-
+const Pagination = ({
+  onPageChange,
+  totalCount,
+  siblingCount = 1,
+  currentPage,
+  pageSize,
+  className,
+}) => {
   const paginationRange = usePagination({
     currentPage,
     totalCount,
@@ -24,7 +22,7 @@ const Pagination = (props) => {
     return null;
   }
 
-  let lastPage = paginationRange.at[-1];
+  const lastPage = paginationRange.at[-1];
   return (
     <ul
       className={classnames("pagination-container", { [className]: className })}
@@ -41,7 +39,11 @@ const Pagination = (props) => {
       {paginationRange.map((pageNumber, index) => {
         // If the pageItem is a DOT, render the DOTS unicode character
         if (pageNumber === DOTS) {
-          return <li className="pagination-item dots">&#8230;</li>;
+          return (
+            <li key={pageNumber + index} className="pagination-item dots">
+              &#8230;
+            </li>
+          );
         }
         return (
           <li

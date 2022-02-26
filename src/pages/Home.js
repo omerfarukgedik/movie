@@ -1,14 +1,49 @@
+import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import Pagination from "../components/Pagination";
-const Home = ({ currentPage, totalCount, pageChange }) => {
-  return (
+import SearchBar from "../components/SearchBar";
+
+const Home = () => {
+  const [isLoading, setLoading] = useState(false);
+  const [searchText, setSearchText] = useState("");
+  const [page, setPage] = useState(1);
+  const [params, setParams] = useSearchParams();
+
+  const search = (text) => {
+    setParams({ search: text || "Pokemon", page: 1 });
+  };
+
+  useEffect(async () => {
+    const setStates = async () => {
+      setLoading(true);
+      const querySearch = params.get("search");
+      const queryPage = parseInt(params.get("page"));
+
+      setParams({
+        search: querySearch || "Pokemon",
+        page: queryPage || 1,
+      });
+
+      setPage(parseInt(params.get("page")));
+      setSearchText(params.get("search"));
+    };
+
+    await setStates();
+    setLoading(false);
+  }, [params]);
+  return isLoading ? (
+    <>Loading...</>
+  ) : (
     <>
+      <SearchBar text={searchText} search={search} />
+
       <div style={{ minHeight: 500 }}>Movie list</div>
       <Pagination
         className="pagination-bar"
-        currentPage={1}
-        totalCount={250}
+        currentPage={page}
+        totalCount={12}
         pageSize={10}
-        onPageChange={(page) => console.log(page)}
+        onPageChange={(num) => setParams({ search: searchText, page: num })}
       />
     </>
   );
