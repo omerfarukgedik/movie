@@ -4,6 +4,7 @@ import "../styles/movie.scss";
 
 const Movie = ({ data }) => {
   const { Title, Year, imdbID, Type, Poster } = data;
+  console.log(Type);
 
   return (
     <Link to={`/${imdbID}`}>
