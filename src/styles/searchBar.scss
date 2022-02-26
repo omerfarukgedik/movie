@@ -1,0 +1,30 @@
+.search {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  background-color: var(--bg-color);
+  align-items: center;
+  input {
+    border: 1px solid var(--blue);
+    padding: 10px;
+    font-size: 1.2rem;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &__button {
+    background-color: var(--blue);
+    color: var(--text-white);
+    font-weight: bolder;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+  }
+}
