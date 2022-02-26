@@ -21,7 +21,8 @@ const Home = () => {
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    dispatch(fetchAsyncMovies({ searchText, apiKey, page }));
+    const apiUrl = process.env.REACT_APP_API_URL;
+    dispatch(fetchAsyncMovies({ apiUrl, searchText, apiKey, page }));
   }, [page, searchText, dispatch]);
   return (
     <>

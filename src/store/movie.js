@@ -18,14 +18,13 @@ export const { setLoading, setMovie } = movie.actions;
 
 export default movie.reducer;
 
-export function fetchAsyncMovie() {
+export function fetchAsyncMovie({ data }) {
+  const { apiUrl, queryParams } = data;
   return async (dispatch) => {
     dispatch(setLoading(true));
 
     try {
-      const response = await fetch(
-        "http://www.omdbapi.com/?i=tt3896198&apikey=b6a1bf57",
-      );
+      const response = await fetch(`${apiUrl}/?${queryParams}`);
       const data = await response.json();
 
       dispatch(setMovie(data));

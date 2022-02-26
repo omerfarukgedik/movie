@@ -3,10 +3,7 @@
 ##### Before start, you need to create .env file to root folder and set
 
 `REACT_APP_API_KEY=yourapikey`
-
-## API Service
-
-` http://www.omdbapi.com/`
+`REACT_APP_API_URL=https://www.omdbapi.com`
 
 ## Available Scripts
 
