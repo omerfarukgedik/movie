@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap");
 
 :root {
-  --bg-color: #ffefef;
+  --bg-color: #2e4c6d;
   --border-dark: #b1d0e0;
 
   --blue: #30475e;
@@ -28,6 +28,7 @@ body {
   display: flex;
   justify-content: center;
   background-color: var(--bg-color);
+  color: var(--text-white);
 
   .App {
     display: flex;

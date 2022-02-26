@@ -7,7 +7,9 @@ const movies = createSlice({
     movies: [],
   },
   reducers: {
-    setLoading: (state, { payload }) => (state.loading = payload),
+    setLoading: (state, { payload }) => {
+      state.loading = payload;
+    },
     setMovies: (state, { movies }) => {
       state.movies = movies;
     },
@@ -33,7 +35,7 @@ export const fetchAsyncMovies = () => {
       dispatch(setMovies(data));
     } catch (err) {
       dispatch(setMovies([]));
-      console.log(err);
+      dispatch(setLoading(false));
     }
   };
 };

@@ -3,13 +3,14 @@
   grid-template-columns: 80% 20%;
   background-color: var(--bg-color);
   align-items: center;
+  font-size: 1.2rem;
+
   input {
-    border: 1px solid var(--blue);
+    @extend .search;
+    border: 1px solid var(--text-white);
     padding: 10px;
-    font-size: 1.2rem;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    background-color: var(--bg-color);
 
     &:focus {
       outline: 0;
@@ -17,8 +18,8 @@
   }
 
   &__button {
-    background-color: var(--blue);
-    color: var(--text-white);
+    background-color: var(--text-white);
+    color: var(--text-black);
     font-weight: bolder;
     height: 100%;
     display: flex;
