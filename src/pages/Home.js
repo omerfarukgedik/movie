@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAsyncMovies } from "../store/movies";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+import Movie from "../components/Movie";
+
+import "../styles/home.scss";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,14 +21,16 @@ const Home = () => {
 
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
-    dispatch(fetchAsyncMovies(searchText, apiKey));
+    dispatch(fetchAsyncMovies({ searchText, apiKey, page }));
   }, [page, searchText, dispatch]);
   return (
     <>
       <SearchBar isLoading={loading} text={searchText} search={search} />
 
-      <div style={{ minHeight: 500 }}>
-        Movie list ({total}, {data.length})
+      <div className="movies">
+        {data.map((movie, index) => (
+          <Movie key={movie.imdbID + index} data={movie} />
+        ))}
       </div>
       <Pagination
         className="pagination-bar"

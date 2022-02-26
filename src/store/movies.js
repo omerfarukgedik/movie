@@ -22,17 +22,17 @@ export const { setLoading, setMovies } = movies.actions;
 
 export default movies.reducer;
 
-export const fetchAsyncMovies = (searchText, apiKey) => {
+export const fetchAsyncMovies = (payload) => {
+  const { searchText, apiKey, page } = payload;
+  console.log(payload);
   return async (dispatch) => {
+    const queryParams = new URLSearchParams({ apiKey, s: searchText, page });
+    console.log(queryParams.toString());
     try {
-      console.log(apiKey);
-      console.log(searchText);
       if (apiKey && searchText) {
         dispatch(setLoading(true));
 
-        const response = await fetch(
-          `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchText}`,
-        );
+        const response = await fetch(`http://www.omdbapi.com/?${queryParams}`);
         const data = await response.json();
 
         data.Response === "True"
