@@ -24,7 +24,7 @@ const MovieDetail = () => {
     <div className="movie_detail">
       <div className="movie_detail__poster">
         <img
-          src={data.Poster != "N/A" ? data.Poster : notFoundImage}
+          src={data.Poster !== "N/A" ? data.Poster : notFoundImage}
           alt={data.Title}
         />
         <span className="imdbPoint">{data.Title}</span>
