@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import RouteList from "./routes";
 
-import "./styles/app.scss";
+import "./assets/styles/app.scss";
 
 const App = () => {
   return (

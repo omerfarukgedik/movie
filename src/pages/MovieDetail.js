@@ -3,7 +3,8 @@ import { useParams } from "react-router-dom";
 import { fetchAsyncMovie } from "../store/movie";
 import { useDispatch, useSelector } from "react-redux";
 
-import "../styles/movieDetail.scss";
+import "../assets/styles/movieDetail.scss";
+import notFoundImage from "../assets/images/not-found.jpg";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -22,7 +23,10 @@ const MovieDetail = () => {
   ) : (
     <div className="movie_detail">
       <div className="movie_detail__poster">
-        <img src={data.Poster} alt={data.Title} />
+        <img
+          src={data.Poster != "N/A" ? data.Poster : notFoundImage}
+          alt={data.Title}
+        />
         <span className="imdbPoint">{data.Title}</span>
       </div>
 

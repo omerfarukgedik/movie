@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import { usePagination, DOTS } from "./usePagination";
-import "../../styles/pagination.scss";
+import "../../assets/styles/pagination.scss";
 
 const Pagination = ({
   onPageChange,

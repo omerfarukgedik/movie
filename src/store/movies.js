@@ -33,8 +33,8 @@ export const fetchAsyncMovies = (payload) => {
         page,
       });
 
-      year && year > 0 && queryParams.append("y", year);
-      type && queryParams.append("type", type);
+      year && year !== "all" && queryParams.append("y", year);
+      type && type !== "all" && queryParams.append("type", type);
 
       if (apiKey && apiUrl) {
         const response = await fetch(`${apiUrl}/?${queryParams}`);

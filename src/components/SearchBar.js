@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styles/searchBar.scss";
+import "../assets/styles/searchBar.scss";
 
 const SearchBar = ({ isLoading, text, search }) => {
   const [searchText, setSearchText] = useState(text);
@@ -31,7 +31,7 @@ const SearchBar = ({ isLoading, text, search }) => {
         onKeyPress={handleKeypress}
         disabled={isLoading}
       >
-        <option value="0">Year</option>
+        <option value="all">All Years</option>
 
         {years.map((year, index) => (
           <option key={year + index} value={year}>
@@ -46,7 +46,7 @@ const SearchBar = ({ isLoading, text, search }) => {
         onKeyPress={handleKeypress}
         disabled={isLoading}
       >
-        <option value="0">Type</option>
+        <option value="all">All Categories</option>
 
         {types.map((type, index) => (
           <option key={type + index} value={type}>

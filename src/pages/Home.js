@@ -5,7 +5,7 @@ import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 import Movie from "../components/Movie";
 
-import "../styles/home.scss";
+import "../assets/styles/home.scss";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ const Home = () => {
   const [type, setType] = useState(null);
 
   const search = (text, year, type) => {
-    type && console.log(type);
     type && setType(type);
     year && setYear(year);
     setPage(1);

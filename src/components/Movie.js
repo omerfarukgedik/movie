@@ -1,12 +1,18 @@
 import { Link } from "react-router-dom";
 
-import "../styles/movie.scss";
+import "../assets/styles/movie.scss";
+import notFoundImage from "../assets/images/not-found.jpg";
 
 const Movie = ({ data }) => {
   const { Title, Year, imdbID, Type, Poster } = data;
   return (
     <Link to={`/${imdbID}`}>
-      <div style={{ backgroundImage: `url(${Poster})` }} className="movie">
+      <div
+        style={{
+          backgroundImage: `url(${Poster !== "N/A" ? Poster : notFoundImage})`,
+        }}
+        className="movie"
+      >
         <div className="movie__imdbId">
           imdbId: <i>{imdbID}</i> <br />
           Type: <i>{Type}</i>
