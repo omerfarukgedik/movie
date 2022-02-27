@@ -15,3 +15,10 @@
     }
   }
 }
+
+@media (max-width: 600px) {
+  .top-pagination {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

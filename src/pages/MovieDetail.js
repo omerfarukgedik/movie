@@ -21,10 +21,8 @@ const MovieDetail = () => {
     </>
   ) : (
     <div className="movie_detail">
-      <div
-        className="movie_detail__poster"
-        style={{ backgroundImage: `url(${data.Poster})` }}
-      >
+      <div className="movie_detail__poster">
+        <img src={data.Poster} alt={data.Title} />
         <span className="imdbPoint">{data.Title}</span>
       </div>
 

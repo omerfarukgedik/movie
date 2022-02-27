@@ -5,10 +5,12 @@
 
   &__poster {
     position: relative;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 480px;
     margin-top: 15px;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
 
     .imdbPoint {
       position: absolute;
@@ -53,7 +55,7 @@
     }
 
     &__info {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
     }
   }
 }

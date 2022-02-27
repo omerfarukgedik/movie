@@ -28,10 +28,12 @@ const Home = () => {
     <>
       <SearchBar isLoading={loading} text={searchText} search={search} />
       <div className="top-pagination">
-        <span>
-          Toplam <strong>{total}</strong> sonuçtan{" "}
-          <strong>{data.length}</strong> tanesi gösteriliyor.
-        </span>
+        {!loading && (
+          <span>
+            Toplam <strong>{total}</strong> sonuçtan{" "}
+            <strong>{data.length}</strong> tanesi gösteriliyor.
+          </span>
+        )}
 
         <Pagination
           className="pagination-bar"
@@ -51,6 +53,7 @@ const Home = () => {
           <Movie key={movie.imdbID + index} data={movie} />
         ))}
       </div>
+
       <Pagination
         className="pagination-bar"
         isLoading={loading}

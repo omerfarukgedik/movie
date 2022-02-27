@@ -6,7 +6,7 @@ import "./styles/app.scss";
 const App = () => {
   return (
     <div className="App">
-      <h4>Sample App</h4>
+      <h2>Movie App</h2>
       <Routes>
         {RouteList.map((item, index) => {
           return (

@@ -26,3 +26,18 @@
     padding: 10px;
   }
 }
+
+@media (max-width: 600px) {
+  .movie {
+    font-size: 0.9rem;
+    &__title {
+      padding: 3px 0;
+      font-size: 0.9rem;
+    }
+
+    &__imdbId {
+      padding: 3px;
+      font-size: 0.9rem;
+    }
+  }
+}

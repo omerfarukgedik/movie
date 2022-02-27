@@ -43,3 +43,11 @@ body {
     margin: 20px 0;
   }
 }
+
+@media (max-width: 600px) {
+  body {
+    .App {
+      width: 340px;
+    }
+  }
+}

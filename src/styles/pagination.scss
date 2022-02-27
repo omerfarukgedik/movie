@@ -18,8 +18,6 @@
     align-items: center;
     letter-spacing: 0.01071em;
     border-radius: 16px;
-    line-height: 1.43;
-    font-size: 13px;
     min-width: 32px;
 
     &.dots:hover {
@@ -74,5 +72,15 @@
 
   &.loading {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .pagination-container {
+    .pagination-item {
+      padding: 0 8px;
+      min-width: 24px;
+      height: 24px;
+    }
   }
 }
