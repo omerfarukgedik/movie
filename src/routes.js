@@ -1,5 +1,5 @@
 import Home from "./pages/Home";
-import SingleMovie from "./pages/SingleMovie";
+import MovieDetail from "./pages/MovieDetail";
 
 const ROUTES = [
   {
@@ -8,7 +8,7 @@ const ROUTES = [
   },
   {
     path: "/:id",
-    element: <SingleMovie />,
+    element: <MovieDetail />,
   },
 ];
 

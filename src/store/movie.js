@@ -4,12 +4,14 @@ const movie = createSlice({
   name: "movie",
   initialState: {
     loading: false,
-    movie: {},
+    data: {},
   },
   reducers: {
-    setLoading: (state, { payload }) => (state.loading = payload),
-    setMovie: (state, { movie }) => {
-      state.movie = movie;
+    setLoading: (state, { payload }) => {
+      state.loading = payload;
+    },
+    setMovie: (state, { payload }) => {
+      state.data = payload;
     },
   },
 });
@@ -18,18 +20,24 @@ export const { setLoading, setMovie } = movie.actions;
 
 export default movie.reducer;
 
-export function fetchAsyncMovie({ data }) {
-  const { apiUrl, queryParams } = data;
+export function fetchAsyncMovie(payload) {
+  const { apiUrl, imdbId, apiKey } = payload;
   return async (dispatch) => {
     dispatch(setLoading(true));
 
     try {
+      const queryParams = new URLSearchParams({ apiKey, i: imdbId });
       const response = await fetch(`${apiUrl}/?${queryParams}`);
       const data = await response.json();
 
-      dispatch(setMovie(data));
+      data.Response === "True"
+        ? dispatch(setMovie(data))
+        : dispatch(setMovie({}));
+
+      dispatch(setLoading(false));
     } catch (err) {
       dispatch(setMovie({}));
+      dispatch(setLoading(false));
     }
   };
 }
