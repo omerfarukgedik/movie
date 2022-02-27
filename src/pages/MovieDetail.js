@@ -13,14 +13,35 @@ const MovieDetail = () => {
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
     const apiUrl = process.env.REACT_APP_API_URL;
-    dispatch(fetchAsyncMovie({ apiUrl, imdbId: id, apiKey }));
-
-    console.log(data);
+    dispatch(fetchAsyncMovie({ apiUrl, apiKey, imdbId: id }));
   }, [dispatch, id]);
-  return (
+  return loading ? (
     <>
-      <div style={{ minHeight: 500 }}>{data.Title}</div>
+      <div>Loading...</div>
     </>
+  ) : (
+    <div className="movie_detail">
+      <div
+        className="movie_detail__poster"
+        style={{ backgroundImage: `url(${data.Poster})` }}
+      >
+        <span className="imdbPoint">{data.Title}</span>
+      </div>
+
+      <div className="movie_detail__info">
+        {Object.keys(data).map((key, index) => (
+          <div className="movie_detail__info_each" key={key + index}>
+            <span>{key}</span>
+            <div>
+              {(typeof data[key] == "string" &&
+                data[key].length < 50 &&
+                data[key]) ||
+                "-"}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

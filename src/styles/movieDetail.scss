@@ -1,0 +1,59 @@
+.movie_detail {
+  display: grid;
+  grid-template-columns: 40% auto;
+  gap: 20px;
+
+  &__poster {
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 480px;
+    margin-top: 15px;
+
+    .imdbPoint {
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      width: 80%;
+      text-align: center;
+      background-color: var(--bg-color);
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+  }
+
+  &__info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    &_each {
+      background-color: var(--border-dark);
+      color: var(--text-black);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      text-align: center;
+
+      span {
+        font-weight: bolder;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .movie_detail {
+    grid-template-columns: 1fr;
+
+    &__poster {
+    }
+
+    &__info {
+      grid-template-columns: 1fr;
+    }
+  }
+}
