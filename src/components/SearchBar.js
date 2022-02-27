@@ -11,9 +11,9 @@ const SearchBar = ({ isLoading, text, search }) => {
 
   // Fill Years
   const currentYear = parseInt(new Date().getFullYear());
-  const tempYears = [];
-  for (let i = 1980; i <= currentYear; i++) {
-    tempYears.push(i);
+  const years = [];
+  for (let i = 2010; i <= currentYear; i++) {
+    years.push(i);
   }
 
   // Fill Types
@@ -33,7 +33,7 @@ const SearchBar = ({ isLoading, text, search }) => {
       >
         <option value="0">Year</option>
 
-        {tempYears.map((year, index) => (
+        {years.map((year, index) => (
           <option key={year + index} value={year}>
             {year}
           </option>
