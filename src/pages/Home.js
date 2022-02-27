@@ -13,8 +13,13 @@ const Home = () => {
 
   const [searchText, setSearchText] = useState("Pokemon");
   const [page, setPage] = useState(1);
+  const [year, setYear] = useState(null);
+  const [type, setType] = useState(null);
 
-  const search = (text) => {
+  const search = (text, year, type) => {
+    type && console.log(type);
+    type && setType(type);
+    year && setYear(year);
     setPage(1);
     setSearchText(text || "Pokemon");
   };
@@ -22,8 +27,10 @@ const Home = () => {
   useEffect(() => {
     const apiKey = process.env.REACT_APP_API_KEY;
     const apiUrl = process.env.REACT_APP_API_URL;
-    dispatch(fetchAsyncMovies({ apiUrl, searchText, apiKey, page }));
-  }, [page, searchText, dispatch]);
+    dispatch(
+      fetchAsyncMovies({ apiUrl, searchText, apiKey, page, type, year }),
+    );
+  }, [page, searchText, dispatch, type, year]);
   return (
     <>
       <SearchBar isLoading={loading} text={searchText} search={search} />

@@ -3,8 +3,21 @@ import "../styles/searchBar.scss";
 
 const SearchBar = ({ isLoading, text, search }) => {
   const [searchText, setSearchText] = useState(text);
+  const [year, setYear] = useState(null);
+  const [type, setType] = useState(null);
 
-  const handleKeypress = (e) => e.key === "Enter" && search(e.target.value);
+  const handleKeypress = (e) =>
+    e.key === "Enter" && search(e.target.value, year, type);
+
+  // Fill Years
+  const currentYear = parseInt(new Date().getFullYear());
+  const tempYears = [];
+  for (let i = 1980; i <= currentYear; i++) {
+    tempYears.push(i);
+  }
+
+  // Fill Types
+  const types = ["movie", "series", "episode"];
 
   useEffect(() => {
     setSearchText(text);
@@ -12,6 +25,36 @@ const SearchBar = ({ isLoading, text, search }) => {
 
   return (
     <div className="search">
+      <select
+        name="year"
+        onChange={(e) => setYear(e.target.value)}
+        onKeyPress={handleKeypress}
+        disabled={isLoading}
+      >
+        <option value="0">Year</option>
+
+        {tempYears.map((year, index) => (
+          <option key={year + index} value={year}>
+            {year}
+          </option>
+        ))}
+      </select>
+
+      <select
+        name="type"
+        onChange={(e) => setType(e.target.value)}
+        onKeyPress={handleKeypress}
+        disabled={isLoading}
+      >
+        <option value="0">Type</option>
+
+        {types.map((type, index) => (
+          <option key={type + index} value={type}>
+            {type}
+          </option>
+        ))}
+      </select>
+
       <input
         onChange={(e) => setSearchText(e.target.value)}
         type="text"
@@ -22,7 +65,7 @@ const SearchBar = ({ isLoading, text, search }) => {
       />
       <div
         disabled={isLoading}
-        onClick={() => search(searchText)}
+        onClick={() => search(searchText, year, type)}
         className={`search__button${isLoading ? "__disabled" : ""}`}
       >
         {isLoading ? "Loading..." : "Search"}

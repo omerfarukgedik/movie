@@ -23,11 +23,18 @@ export const { setLoading, setMovies } = movies.actions;
 export default movies.reducer;
 
 export const fetchAsyncMovies = (payload) => {
-  const { apiUrl, searchText, apiKey, page } = payload;
+  const { apiUrl, searchText, apiKey, page, type, year } = payload;
   return async (dispatch) => {
     dispatch(setLoading(true));
     try {
-      const queryParams = new URLSearchParams({ apiKey, s: searchText, page });
+      const queryParams = new URLSearchParams({
+        apiKey,
+        s: searchText,
+        page,
+      });
+
+      year && year > 0 && queryParams.append("y", year);
+      type && queryParams.append("type", type);
 
       if (apiKey && apiUrl) {
         const response = await fetch(`${apiUrl}/?${queryParams}`);
