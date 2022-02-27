@@ -55,9 +55,13 @@ const Home = () => {
       </div>
 
       <div className="movies">
-        {data.map((movie, index) => (
-          <Movie key={movie.imdbID + index} data={movie} />
-        ))}
+        {loading ? (
+          <>Loading...</>
+        ) : (
+          data.map((movie, index) => (
+            <Movie key={movie.imdbID + index} data={movie} />
+          ))
+        )}
       </div>
 
       <Pagination
